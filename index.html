@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReBook - Manuels Scolaires</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ========== NAVIGATION ========== -->
+    <nav>
+        <div class="logo">📚 ReBook</div>
+        <div class="nav-links">
+            <a href="#" data-page="home" class="nav-link" data-translate="nav_home">Accueil</a>
+            <a href="#" data-page="browse" class="nav-link" data-translate="nav_browse">Parcourir</a>
+            <a href="#" data-page="sell" class="nav-link" data-translate="nav_sell">Vendre</a>
+            <a href="#" data-page="messages" class="nav-link" data-translate="nav_messages">
+                Messages
+                <span class="message-badge" id="messageBadge" style="display: none;">0</span>
+            </a>
+            <div class="bc-balance-container">
+                <div class="bc-icon">💰</div>
+                <div class="bc-info">
+                    <span class="bc-label" data-translate="bc_balance">Solde BC</span>
+                    <span class="bc-amount" id="bcBalance">500</span>
+                    <span class="bc-currency" data-translate="bc_currency">BC</span>
+                </div>
+            </div>
+            <button class="theme-shop-btn" onclick="openThemeShop()" title="Boutique de Thèmes">🎨</button>
+            <button class="profile-btn" onclick="openProfileModal()">👤 🥉</button>
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="ar">AR</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== CONTAINER PRINCIPAL ========== -->
+    <div class="container">
+        
+        <!-- ========== PAGE ACCUEIL ========== -->
+        <div id="home" class="page active">
+            <div class="hero">
+                <h1 data-translate="hero_title">Achetez et Vendez vos Manuels Scolaires</h1>
+                <p data-translate="hero_subtitle">La plateforme simple et économique pour échanger vos livres scolaires</p>
+                <div class="btn-group">
+                    <button class="btn btn-primary" data-page="browse" data-translate="btn_browse">Parcourir les Livres</button>
+                    <button class="btn btn-secondary" data-page="sell" data-translate="btn_sell">Vendre un Livre</button>
+                </div>
+            </div>
+
+            <h2 style="text-align: center; margin-bottom: 2rem;" data-translate="why_title">Pourquoi utiliser ReBook ?</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3 data-translate="feature1_title">Économique</h3>
+                    <p data-translate="feature1_desc">Achetez des livres d'occasion à prix réduit et vendez ceux dont vous n'avez plus besoin.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3 data-translate="feature2_title">Écologique</h3>
+                    <p data-translate="feature2_desc">Donnez une seconde vie aux manuels scolaires et réduisez le gaspillage.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 data-translate="feature3_title">Simple</h3>
+                    <p data-translate="feature3_desc">Interface intuitive pour publier une annonce en quelques clics.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== PAGE PARCOURIR ========== -->
+        <div id="browse" class="page">
+            <h1 style="margin-bottom: 2rem;" data-translate="browse_title">Parcourir les Manuels</h1>
+            
+            <div class="filters">
+                <div class="filter-group">
+                    <div class="filter-item">
+                        <label data-translate="filter_subject">Matière</label>
+                        <select id="filterSubject">
+                            <option value="" data-translate="filter_all">Toutes</option>
+                            <option value="math" data-translate="subject_math">Mathématiques</option>
+                            <option value="physics" data-translate="subject_physics">Physique</option>
+                            <option value="french" data-translate="subject_french">Français</option>
+                            <option value="english" data-translate="subject_english">Anglais</option>
+                            <option value="history" data-translate="subject_history">Histoire</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label data-translate="filter_level">Niveau</label>
+                        <select id="filterLevel">
+                            <option value="" data-translate="filter_all">Tous</option>
+                            <option value="college" data-translate="level_college">Collège</option>
+                            <option value="lycee" data-translate="level_lycee">Lycée</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label data-translate="filter_condition">État</label>
+                        <select id="filterCondition">
+                            <option value="" data-translate="filter_all">Tous</option>
+                            <option value="excellent" data-translate="condition_excellent">Excellent</option>
+                            <option value="good" data-translate="condition_good">Bon</option>
+                            <option value="fair" data-translate="condition_fair">Correct</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label data-translate="filter_max_price">Prix max (DH)</label>
+                        <input type="number" id="filterPrice" placeholder="200">
+                    </div>
+                </div>
+            </div>
+
+            <div class="books-grid" id="booksGrid">
+                <!-- Les livres seront générés ici par JavaScript -->
+            </div>
+        </div>
+
+        <!-- ========== PAGE VENDRE ========== -->
+        <div id="sell" class="page">
+            <div class="form-container">
+                <h1 style="margin-bottom: 2rem;" data-translate="sell_title">Vendre un Manuel</h1>
+                <div id="successMessage" class="success-message" data-translate="success_message">Votre annonce a été publiée avec succès !</div>
+                
+                <form id="sellForm">
+                    <div class="form-group">
+                        <label data-translate="form_title">Titre du livre</label>
+                        <input type="text" id="bookTitle" required>
+                    </div>
+                    
+                    <!-- NOUVELLE SECTION : Upload de photos -->
+                    <div class="form-group">
+                        <label data-translate="form_photo">Photo du livre</label>
+                        <div class="photo-upload-container">
+                            <input type="file" id="bookPhoto" accept="image/*" style="display: none;">
+                            <div class="photo-preview" id="photoPreview" onclick="document.getElementById('bookPhoto').click()">
+                                <div class="photo-placeholder">
+                                    <span class="photo-icon">📷</span>
+                                    <span data-translate="photo_placeholder">Cliquez pour ajouter une photo</span>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-remove-photo" id="removePhotoBtn" style="display: none;" onclick="removePhoto()">
+                                ✕ <span data-translate="btn_remove_photo">Supprimer la photo</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label data-translate="form_subject">Matière</label>
+                        <select id="bookSubject" required>
+                            <option value="math" data-translate="subject_math">Mathématiques</option>
+                            <option value="physics" data-translate="subject_physics">Physique</option>
+                            <option value="french" data-translate="subject_french">Français</option>
+                            <option value="english" data-translate="subject_english">Anglais</option>
+                            <option value="history" data-translate="subject_history">Histoire</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label data-translate="form_level">Niveau</label>
+                        <select id="bookLevel" required>
+                            <option value="college" data-translate="level_college">Collège</option>
+                            <option value="lycee" data-translate="level_lycee">Lycée</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label data-translate="form_condition">État</label>
+                        <select id="bookCondition" required>
+                            <option value="excellent" data-translate="condition_excellent">Excellent</option>
+                            <option value="good" data-translate="condition_good">Bon</option>
+                            <option value="fair" data-translate="condition_fair">Correct</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label data-translate="form_price">Prix (DH)</label>
+                        <input type="number" id="bookPrice" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-translate="form_payment_type">Type de paiement</label>
+                        <select id="bookPaymentType" required>
+                            <option value="cash" data-translate="payment_cash">💵 Cash (DH)</option>
+                            <option value="bc" data-translate="payment_bc">💰 Book Coins (BC)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label data-translate="form_description">Description</label>
+                        <textarea id="bookDescription"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label data-translate="form_contact">Contact (email ou téléphone)</label>
+                        <input type="text" id="bookContact" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;" data-translate="btn_publish">Publier l'annonce</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- ========== PAGE MESSAGES (NOUVELLE) ========== -->
+        <div id="messages" class="page">
+            <h1 style="margin-bottom: 2rem;" data-translate="messages_title">Mes Messages</h1>
+            
+            <div class="messages-container">
+                <div class="conversations-list">
+                    <h3 data-translate="conversations_title">Conversations</h3>
+                    <div id="conversationsList">
+                        <!-- Les conversations seront générées ici -->
+                    </div>
+                </div>
+                
+                <div class="chat-area">
+                    <div class="chat-empty" id="chatEmpty">
+                        <span class="chat-empty-icon">💬</span>
+                        <p data-translate="chat_empty">Sélectionnez une conversation pour commencer</p>
+                    </div>
+                    
+                    <div class="chat-active" id="chatActive" style="display: none;">
+                        <div class="chat-header">
+                            <div class="chat-user-info">
+                                <div class="chat-user-avatar" id="chatUserAvatar">👤</div>
+                                <div class="chat-user-details">
+                                    <div class="chat-user-name" id="chatUserName"></div>
+                                    <div class="chat-book-title" id="chatBookTitle"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-messages" id="chatMessages">
+                            <!-- Messages seront générés ici -->
+                        </div>
+                        
+                        <div class="chat-input-container">
+                            <input type="text" id="chatInput" placeholder="Tapez votre message..." data-translate-placeholder="chat_input_placeholder">
+                            <button class="btn-send" onclick="sendMessage()">
+                                <span data-translate="btn_send">Envoyer</span> ➤
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== PAGE DÉTAILS ========== -->
+        <div id="details" class="page">
+            <div class="book-details" id="bookDetailsContent">
+                <!-- Le contenu sera généré par JavaScript -->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ========== MODAL DE SIGNALEMENT ========== -->
+    <div id="reportModal" class="modal">
+        <div class="modal-content">
+            <h2 data-translate="report_title">Signaler cette annonce</h2>
+            <form id="reportForm">
+                <div class="form-group">
+                    <label data-translate="report_reason">Raison du signalement</label>
+                    <select id="reportReason" required>
+                        <option value="spam" data-translate="report_reason_spam">Spam ou arnaque</option>
+                        <option value="inappropriate" data-translate="report_reason_inappropriate">Contenu inapproprié</option>
+                        <option value="wrong_info" data-translate="report_reason_wrong_info">Informations incorrectes</option>
+                        <option value="other" data-translate="report_reason_other">Autre</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label data-translate="report_details">Détails (optionnel)</label>
+                    <textarea id="reportDetails" rows="4" data-translate="report_details_placeholder" placeholder="Expliquez pourquoi vous signalez cette annonce..."></textarea>
+                </div>
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-primary" data-translate="btn_submit_report">Envoyer le signalement</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeReportModal()" data-translate="btn_cancel">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========== MODAL DE TICKET D'ACHAT ========== -->
+    <div id="ticketModal" class="ticket-modal">
+        <div class="ticket-overlay" onclick="closeTicket()"></div>
+        <div class="ticket-container">
+            <div class="ticket">
+                <div class="ticket-header">
+                    <div class="ticket-logo">📚 ReBook</div>
+                    <div class="ticket-title" data-translate="ticket_title">Ticket d'Achat</div>
+                </div>
+                
+                <div class="ticket-perforations"></div>
+                
+                <div class="ticket-body">
+                    <div class="ticket-info">
+                        <div class="ticket-label" data-translate="ticket_book">Livre :</div>
+                        <div class="ticket-value" id="ticketBookTitle"></div>
+                    </div>
+                    
+                    <div class="ticket-info">
+                        <div class="ticket-label" data-translate="ticket_price">Prix :</div>
+                        <div class="ticket-value ticket-price-value" id="ticketPrice"></div>
+                    </div>
+                    
+                    <div class="ticket-info">
+                        <div class="ticket-label" data-translate="ticket_payment">Paiement :</div>
+                        <div class="ticket-value" id="ticketPaymentType"></div>
+                    </div>
+                    
+                    <div class="ticket-info">
+                        <div class="ticket-label" data-translate="ticket_seller">Vendeur :</div>
+                        <div class="ticket-value" id="ticketSeller"></div>
+                    </div>
+                    
+                    <div class="ticket-divider"></div>
+                    
+                    <div class="ticket-code-section">
+                        <div class="ticket-code-label" data-translate="ticket_code">Code de Transaction</div>
+                        <div class="ticket-code" id="ticketCode">XXXX-XXXX-XXXX</div>
+                        <div class="ticket-barcode">
+                            <div class="barcode-line"></div>
+                            <div class="barcode-line"></div>
+                            <div class="barcode-line"></div>
+                            <div class="barcode-line"></div>
+                            <div class="barcode-line"></div>
+                            <div class="barcode-line"></div>
+                            <div class="barcode-line"></div>
+                            <div class="barcode-line"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="ticket-date" id="ticketDate"></div>
+                    
+                    <div class="ticket-footer" data-translate="ticket_footer">
+                        Présentez ce code au vendeur pour finaliser l'achat
+                    </div>
+                </div>
+                
+                <div class="ticket-perforations"></div>
+            </div>
+            
+            <button class="btn btn-primary ticket-close-btn" onclick="closeTicket()" data-translate="ticket_close">Fermer</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    
+    <!-- ========== MODAL DE PROFIL ========== -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content profile-modal-content">
+            <h2 data-translate="profile_title">Mon Profil</h2>
+            
+            <div class="profile-section">
+                <div class="form-group">
+                    <label data-translate="profile_name">Nom</label>
+                    <input type="text" id="profileName" placeholder="Votre nom">
+                </div>
+                
+                <div class="form-group">
+                    <label data-translate="profile_avatar">Avatar (emoji)</label>
+                    <input type="text" id="profileAvatar" placeholder="👤" maxlength="2">
+                </div>
+            </div>
+            
+            <div class="profile-section">
+                <h3 data-translate="profile_theme">Thème de couleur</h3>
+                <div class="theme-selector">
+                    <div class="theme-option" data-theme="green" onclick="selectTheme('green')">
+                        <div class="theme-preview" style="background: linear-gradient(135deg, #2ecc71, #27ae60);"></div>
+                        <span data-translate="theme_green">Vert</span>
+                    </div>
+                    <div class="theme-option" data-theme="blue" onclick="selectTheme('blue')">
+                        <div class="theme-preview" style="background: linear-gradient(135deg, #3498db, #2980b9);"></div>
+                        <span data-translate="theme_blue">Bleu</span>
+                    </div>
+                    <div class="theme-option" data-theme="red" onclick="selectTheme('red')">
+                        <div class="theme-preview" style="background: linear-gradient(135deg, #e74c3c, #c0392b);"></div>
+                        <span data-translate="theme_red">Rouge</span>
+                    </div>
+                    <div class="theme-option" data-theme="purple" onclick="selectTheme('purple')">
+                        <div class="theme-preview" style="background: linear-gradient(135deg, #9b59b6, #8e44ad);"></div>
+                        <span data-translate="theme_purple">Violet</span>
+                    </div>
+                    <div class="theme-option" data-theme="orange" onclick="selectTheme('orange')">
+                        <div class="theme-preview" style="background: linear-gradient(135deg, #e67e22, #d35400);"></div>
+                        <span data-translate="theme_orange">Orange</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-section">
+                <h3 data-translate="profile_stats">Statistiques</h3>
+                <div class="profile-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">📦</div>
+                        <div class="stat-info">
+                            <div class="stat-label" data-translate="profile_sales">Ventes</div>
+                            <div class="stat-value" id="profileSales">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🛒</div>
+                        <div class="stat-info">
+                            <div class="stat-label" data-translate="profile_purchases">Achats</div>
+                            <div class="stat-value" id="profilePurchases">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card status-card">
+                        <div class="stat-icon">🏆</div>
+                        <div class="stat-info">
+                            <div class="stat-label" data-translate="profile_status">Statut</div>
+                            <div class="stat-value status-value" id="profileStatus">🥉 Bronze</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="status-progress">
+                    <div class="status-info-text">
+                        <p><strong>🥉 Bronze:</strong> 0-4 activités</p>
+                        <p><strong>🥈 Argent:</strong> 5-9 activités</p>
+                        <p><strong>🥇 Or:</strong> 10-19 activités</p>
+                        <p><strong>💎 Platine:</strong> 20+ activités</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="saveProfileChanges()" data-translate="btn_save_profile">Enregistrer</button>
+                <button class="btn btn-secondary" onclick="closeProfileModal()" data-translate="btn_cancel">Annuler</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== MODAL BOUTIQUE DE THÈMES ========== -->
+    <div id="themeShopModal" class="modal">
+        <div class="modal-content theme-shop-modal">
+            <h2 data-translate="theme_shop">🎨 Boutique de Thèmes</h2>
+            <p class="theme-shop-subtitle" data-translate="theme_shop_desc">Débloquez de nouveaux thèmes avec vos BC !</p>
+            
+            <div class="theme-shop-grid">
+                <div class="theme-shop-item" data-theme="green">
+                    <div class="theme-preview-large" style="background: linear-gradient(135deg, #2ecc71, #27ae60);"></div>
+                    <h3 data-translate="theme_green">Vert</h3>
+                    <div class="theme-status">✓ <span data-translate="theme_unlocked">Débloqué</span></div>
+                    <p class="theme-price">Gratuit</p>
+                    <button class="btn theme-unlock-btn" disabled style="background: #95a5a6;" data-translate="theme_unlocked">Débloqué</button>
+                </div>
+                
+                <div class="theme-shop-item" data-theme="blue">
+                    <div class="theme-preview-large" style="background: linear-gradient(135deg, #3498db, #2980b9);"></div>
+                    <h3 data-translate="theme_blue">Bleu</h3>
+                    <div class="theme-status">🔒 <span data-translate="theme_locked">Verrouillé</span></div>
+                    <p class="theme-price">50 BC</p>
+                    <button class="btn btn-primary theme-unlock-btn" onclick="unlockTheme('blue')">
+                        <span data-translate="btn_unlock">Débloquer</span> (50 BC)
+                    </button>
+                </div>
+                
+                <div class="theme-shop-item" data-theme="red">
+                    <div class="theme-preview-large" style="background: linear-gradient(135deg, #e74c3c, #c0392b);"></div>
+                    <h3 data-translate="theme_red">Rouge</h3>
+                    <div class="theme-status">🔒 <span data-translate="theme_locked">Verrouillé</span></div>
+                    <p class="theme-price">75 BC</p>
+                    <button class="btn btn-primary theme-unlock-btn" onclick="unlockTheme('red')">
+                        <span data-translate="btn_unlock">Débloquer</span> (75 BC)
+                    </button>
+                </div>
+                
+                <div class="theme-shop-item" data-theme="purple">
+                    <div class="theme-preview-large" style="background: linear-gradient(135deg, #9b59b6, #8e44ad);"></div>
+                    <h3 data-translate="theme_purple">Violet</h3>
+                    <div class="theme-status">🔒 <span data-translate="theme_locked">Verrouillé</span></div>
+                    <p class="theme-price">100 BC</p>
+                    <button class="btn btn-primary theme-unlock-btn" onclick="unlockTheme('purple')">
+                        <span data-translate="btn_unlock">Débloquer</span> (100 BC)
+                    </button>
+                </div>
+                
+                <div class="theme-shop-item" data-theme="orange">
+                    <div class="theme-preview-large" style="background: linear-gradient(135deg, #e67e22, #d35400);"></div>
+                    <h3 data-translate="theme_orange">Orange</h3>
+                    <div class="theme-status">🔒 <span data-translate="theme_locked">Verrouillé</span></div>
+                    <p class="theme-price">150 BC</p>
+                    <button class="btn btn-primary theme-unlock-btn" onclick="unlockTheme('orange')">
+                        <span data-translate="btn_unlock">Débloquer</span> (150 BC)
+                    </button>
+                </div>
+            </div>
+            
+            <button class="btn btn-secondary" onclick="closeThemeShop()" data-translate="btn_cancel">Fermer</button>
+        </div>
+    </div>
+    
+    <script src="Effect.js"></script>
+</body>
+</html>
