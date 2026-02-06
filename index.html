@@ -14,6 +14,7 @@
         <div class="nav-links">
             <a href="#" data-page="home" class="nav-link" data-translate="nav_home">Accueil</a>
             <a href="#" data-page="browse" class="nav-link" data-translate="nav_browse">Parcourir</a>
+            <a href="#" data-page="storybooks" class="nav-link" data-translate="nav_storybooks">Livres de Conte</a>
             <a href="#" data-page="sell" class="nav-link" data-translate="nav_sell">Vendre</a>
             <a href="#" data-page="messages" class="nav-link" data-translate="nav_messages">
                 Messages
@@ -85,6 +86,9 @@
                             <option value="physics" data-translate="subject_physics">Physique</option>
                             <option value="french" data-translate="subject_french">Français</option>
                             <option value="english" data-translate="subject_english">Anglais</option>
+                            <option value="arabic" data-translate="subject_arabic">Arabe</option>
+                            <option value="islamic" data-translate="subject_islamic">Éducation Islamique</option>
+                            <option value="philosophy" data-translate="subject_philosophy">Philosophie</option>
                             <option value="history" data-translate="subject_history">Histoire</option>
                         </select>
                     </div>
@@ -117,6 +121,47 @@
             </div>
         </div>
 
+        <!-- ========== PAGE LIVRES DE CONTE ========== -->
+        <div id="storybooks" class="page">
+            <h1 style="margin-bottom: 2rem;" data-translate="storybooks_title">Livres de Conte</h1>
+            
+            <div class="filters">
+                <div class="filter-group">
+                    <div class="filter-item">
+                        <label data-translate="filter_genre">Genre</label>
+                        <select id="filterGenre">
+                            <option value="" data-translate="filter_all">Tous</option>
+                            <option value="adventure" data-translate="genre_adventure">Aventure</option>
+                            <option value="fantasy" data-translate="genre_fantasy">Fantaisie</option>
+                            <option value="detective" data-translate="genre_detective">Policier</option>
+                            <option value="fairy" data-translate="genre_fairy">Contes de fées</option>
+                            <option value="educational" data-translate="genre_educational">Éducatif</option>
+                            <option value="animals" data-translate="genre_animals">Animaux</option>
+                            <option value="scifi" data-translate="genre_scifi">Science-Fiction</option>
+                            <option value="mystery" data-translate="genre_mystery">Mystère</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label data-translate="filter_condition">État</label>
+                        <select id="filterStorybookCondition">
+                            <option value="" data-translate="filter_all">Tous</option>
+                            <option value="excellent" data-translate="condition_excellent">Excellent</option>
+                            <option value="good" data-translate="condition_good">Bon</option>
+                            <option value="fair" data-translate="condition_fair">Correct</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label data-translate="filter_max_price">Prix max (DH)</label>
+                        <input type="number" id="filterStorybookPrice" placeholder="100">
+                    </div>
+                </div>
+            </div>
+
+            <div class="books-grid" id="storybooksGrid">
+                <!-- Les livres de conte seront générés ici par JavaScript -->
+            </div>
+        </div>
+
         <!-- ========== PAGE VENDRE ========== -->
         <div id="sell" class="page">
             <div class="form-container">
@@ -127,6 +172,15 @@
                     <div class="form-group">
                         <label data-translate="form_title">Titre du livre</label>
                         <input type="text" id="bookTitle" required>
+                    </div>
+                    
+                    <!-- NOUVELLE SECTION : Type de livre -->
+                    <div class="form-group">
+                        <label data-translate="form_book_type">Type de livre</label>
+                        <select id="bookType" required onchange="toggleBookTypeFields()">
+                            <option value="textbook" data-translate="book_type_textbook">Manuel Scolaire</option>
+                            <option value="storybook" data-translate="book_type_storybook">Livre de Conte</option>
+                        </select>
                     </div>
                     
                     <!-- NOUVELLE SECTION : Upload de photos -->
@@ -146,23 +200,46 @@
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label data-translate="form_subject">Matière</label>
-                        <select id="bookSubject" required>
-                            <option value="math" data-translate="subject_math">Mathématiques</option>
-                            <option value="physics" data-translate="subject_physics">Physique</option>
-                            <option value="french" data-translate="subject_french">Français</option>
-                            <option value="english" data-translate="subject_english">Anglais</option>
-                            <option value="history" data-translate="subject_history">Histoire</option>
-                        </select>
+                    <!-- CHAMPS POUR MANUELS SCOLAIRES -->
+                    <div id="textbookFields">
+                        <div class="form-group">
+                            <label data-translate="form_level">Niveau</label>
+                            <select id="bookLevel" onchange="updateSubjectOptions()">
+                                <option value="college" data-translate="level_college">Collège</option>
+                                <option value="lycee" data-translate="level_lycee">Lycée</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label data-translate="form_subject">Matière</label>
+                            <select id="bookSubject">
+                                <option value="math" data-translate="subject_math">Mathématiques</option>
+                                <option value="physics" data-translate="subject_physics">Physique</option>
+                                <option value="french" data-translate="subject_french">Français</option>
+                                <option value="english" data-translate="subject_english">Anglais</option>
+                                <option value="arabic" data-translate="subject_arabic">Arabe</option>
+                                <option value="islamic" data-translate="subject_islamic">Éducation Islamique</option>
+                                <option value="history" data-translate="subject_history">Histoire</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label data-translate="form_level">Niveau</label>
-                        <select id="bookLevel" required>
-                            <option value="college" data-translate="level_college">Collège</option>
-                            <option value="lycee" data-translate="level_lycee">Lycée</option>
-                        </select>
+                    
+                    <!-- CHAMPS POUR LIVRES DE CONTE -->
+                    <div id="storybookFields" style="display: none;">
+                        <div class="form-group">
+                            <label data-translate="filter_genre">Genre</label>
+                            <select id="bookGenre">
+                                <option value="adventure" data-translate="genre_adventure">Aventure</option>
+                                <option value="fantasy" data-translate="genre_fantasy">Fantaisie</option>
+                                <option value="detective" data-translate="genre_detective">Policier</option>
+                                <option value="fairy" data-translate="genre_fairy">Contes de fées</option>
+                                <option value="educational" data-translate="genre_educational">Éducatif</option>
+                                <option value="animals" data-translate="genre_animals">Animaux</option>
+                                <option value="scifi" data-translate="genre_scifi">Science-Fiction</option>
+                                <option value="mystery" data-translate="genre_mystery">Mystère</option>
+                            </select>
+                        </div>
                     </div>
+                    
                     <div class="form-group">
                         <label data-translate="form_condition">État</label>
                         <select id="bookCondition" required>
@@ -173,7 +250,8 @@
                     </div>
                     <div class="form-group">
                         <label data-translate="form_price">Prix (DH)</label>
-                        <input type="number" id="bookPrice" required>
+                        <input type="number" id="bookPrice" required min="1" max="100">
+                        <small style="color: #7f8c8d; font-size: 0.85rem; display: block; margin-top: 0.3rem;" data-translate="price_limit">Prix maximum : 100 DH</small>
                     </div>
                     <div class="form-group">
                         <label data-translate="form_payment_type">Type de paiement</label>

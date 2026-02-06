@@ -3,6 +3,7 @@ const translations = {
     fr: {
         nav_home: "Accueil",
         nav_browse: "Parcourir",
+        nav_storybooks: "Livres de Conte",
         nav_sell: "Vendre",
         hero_title: "Achetez et Vendez vos Manuels Scolaires",
         hero_subtitle: "La plateforme simple et économique pour échanger vos livres scolaires",
@@ -25,6 +26,9 @@ const translations = {
         subject_physics: "Physique",
         subject_french: "Français",
         subject_english: "Anglais",
+        subject_arabic: "Arabe",
+        subject_islamic: "Éducation Islamique",
+        subject_philosophy: "Philosophie",
         subject_history: "Histoire",
         level_college: "Collège",
         level_lycee: "Lycée",
@@ -116,11 +120,27 @@ const translations = {
         theme_purple: "Violet",
         theme_orange: "Orange",
         btn_save_profile: "Enregistrer",
-        profile_saved: "Profil enregistré avec succès !"
+        profile_saved: "Profil enregistré avec succès !",
+        // Storybooks
+        storybooks_title: "Livres de Conte",
+        filter_genre: "Genre",
+        genre_adventure: "Aventure",
+        genre_fantasy: "Fantaisie",
+        genre_detective: "Policier",
+        genre_fairy: "Contes de fées",
+        genre_educational: "Éducatif",
+        genre_animals: "Animaux",
+        genre_scifi: "Science-Fiction",
+        genre_mystery: "Mystère",
+        form_book_type: "Type de livre",
+        book_type_textbook: "Manuel Scolaire",
+        book_type_storybook: "Livre de Conte",
+        price_limit: "Prix maximum : 100 DH"
     },
     en: {
         nav_home: "Home",
         nav_browse: "Browse",
+        nav_storybooks: "Story Books",
         nav_sell: "Sell",
         hero_title: "Buy and Sell Your School Textbooks",
         hero_subtitle: "The simple and affordable platform to exchange your school books",
@@ -143,6 +163,9 @@ const translations = {
         subject_physics: "Physics",
         subject_french: "French",
         subject_english: "English",
+        subject_arabic: "Arabic",
+        subject_islamic: "Islamic Education",
+        subject_philosophy: "Philosophy",
         subject_history: "History",
         level_college: "Middle School",
         level_lycee: "High School",
@@ -208,6 +231,21 @@ const translations = {
         profile_saved: "Profile saved successfully!",
         btn_cancel: "Cancel",
         report_success: "Thank you! Your report has been submitted.",
+        // Storybooks
+        storybooks_title: "Story Books",
+        filter_genre: "Genre",
+        genre_adventure: "Adventure",
+        genre_fantasy: "Fantasy",
+        genre_detective: "Detective",
+        genre_fairy: "Fairy Tales",
+        genre_educational: "Educational",
+        genre_animals: "Animals",
+        genre_scifi: "Science Fiction",
+        genre_mystery: "Mystery",
+        form_book_type: "Book Type",
+        book_type_textbook: "Textbook",
+        book_type_storybook: "Story Book",
+        price_limit: "Maximum price: 100 DH",
         bc_balance: "BC Balance",
         bc_currency: "BC",
         form_payment_type: "Payment type",
@@ -239,6 +277,7 @@ const translations = {
     ar: {
         nav_home: "الرئيسية",
         nav_browse: "تصفح",
+        nav_storybooks: "كتب القصص",
         nav_sell: "بيع",
         hero_title: "اشترِ وبع كتبك المدرسية",
         hero_subtitle: "المنصة البسيطة والاقتصادية لتبادل كتبك المدرسية",
@@ -261,6 +300,9 @@ const translations = {
         subject_physics: "الفيزياء",
         subject_french: "الفرنسية",
         subject_english: "الإنجليزية",
+        subject_arabic: "العربية",
+        subject_islamic: "التربية الإسلامية",
+        subject_philosophy: "الفلسفة",
         subject_history: "التاريخ",
         level_college: "الإعدادي",
         level_lycee: "الثانوي",
@@ -352,7 +394,22 @@ const translations = {
         theme_price: "السعر",
         btn_unlock: "فتح",
         theme_unlock_success: "تم فتح الثيم بنجاح!",
-        theme_already_unlocked: "الثيم مفتوح بالفعل!"
+        theme_already_unlocked: "الثيم مفتوح بالفعل!",
+        // Storybooks
+        storybooks_title: "كتب القصص",
+        filter_genre: "النوع",
+        genre_adventure: "مغامرة",
+        genre_fantasy: "خيال",
+        genre_detective: "بوليسي",
+        genre_fairy: "حكايات خيالية",
+        genre_educational: "تعليمي",
+        genre_animals: "حيوانات",
+        genre_scifi: "خيال علمي",
+        genre_mystery: "غموض",
+        form_book_type: "نوع الكتاب",
+        book_type_textbook: "كتاب مدرسي",
+        book_type_storybook: "كتاب قصص",
+        price_limit: "السعر الأقصى: 100 درهم"
     }
 };
 
@@ -437,8 +494,252 @@ let books = [
         contact: "0655443322", 
         description: "Neuf, jamais ouvert. Emballage d'origine.",
         sold: false
+    },
+    { 
+        id: 10, 
+        title: "اللغة العربية - المستوى الأول إعدادي", 
+        subject: "arabic", 
+        level: "college", 
+        condition: "good", 
+        price: 45, 
+        paymentType: "cash",
+        seller: "Fatima K.", 
+        contact: "fatima@email.com", 
+        description: "كتاب في حالة جيدة، بعض التعليقات البسيطة.",
+        sold: false
+    },
+    { 
+        id: 11, 
+        title: "العربية للسنة الثانية باكالوريا", 
+        subject: "arabic", 
+        level: "lycee", 
+        condition: "excellent", 
+        price: 55, 
+        paymentType: "bc",
+        seller: "Youssef M.", 
+        contact: "0677889900", 
+        description: "كتاب جديد، لم يستخدم قط.",
+        sold: false
+    },
+    { 
+        id: 12, 
+        title: "التربية الإسلامية - الثالثة إعدادي", 
+        subject: "islamic", 
+        level: "college", 
+        condition: "excellent", 
+        price: 35, 
+        paymentType: "cash",
+        seller: "Karim H.", 
+        contact: "0655443322", 
+        description: "كتاب جديد بحالة ممتازة.",
+        sold: false
+    },
+    { 
+        id: 13, 
+        title: "Philosophie - Terminale", 
+        subject: "philosophy", 
+        level: "lycee", 
+        condition: "good", 
+        price: 50, 
+        paymentType: "bc",
+        seller: "Sophie L.", 
+        contact: "sophie@email.com", 
+        description: "Manuel de philosophie pour la terminale, bon état.",
+        sold: false
     }
 ];
+
+// ========== LIVRES DE CONTE ==========
+let storybooks = [
+    {
+        id: 101,
+        title: "Le Petit Prince",
+        genre: "adventure",
+        condition: "excellent",
+        price: 35,
+        paymentType: "cash",
+        seller: "Sara L.",
+        contact: "sara@email.com",
+        description: "Classique intemporel en excellent état.",
+        sold: false
+    },
+    {
+        id: 102,
+        title: "Les Trois Petits Cochons",
+        genre: "fairy",
+        condition: "good",
+        price: 20,
+        paymentType: "bc",
+        seller: "Karim B.",
+        contact: "0612345678",
+        description: "Livre illustré avec de belles images.",
+        sold: false
+    },
+    {
+        id: 103,
+        title: "La Jungle des Animaux",
+        genre: "animals",
+        condition: "excellent",
+        price: 40,
+        paymentType: "cash",
+        seller: "Amina K.",
+        contact: "amina@email.com",
+        description: "Livre éducatif sur les animaux de la jungle.",
+        sold: false
+    },
+    {
+        id: 104,
+        title: "Apprendre l'Alphabet",
+        genre: "educational",
+        condition: "good",
+        price: 25,
+        paymentType: "bc",
+        seller: "Youssef M.",
+        contact: "0666777888",
+        description: "Livre interactif pour apprendre les lettres.",
+        sold: false
+    },
+    {
+        id: 105,
+        title: "Les Aventures de Tom",
+        genre: "adventure",
+        condition: "fair",
+        price: 30,
+        paymentType: "cash",
+        seller: "Fatima Z.",
+        contact: "fatima@email.com",
+        description: "Roman d'aventure passionnant.",
+        sold: false
+    },
+    {
+        id: 106,
+        title: "La Belle et la Bête",
+        genre: "fairy",
+        condition: "excellent",
+        price: 35,
+        paymentType: "bc",
+        seller: "Omar H.",
+        contact: "0677888999",
+        description: "Conte de fées magnifiquement illustré.",
+        sold: false
+    },
+    {
+        id: 107,
+        title: "Sherlock Holmes: L'Affaire du Chien",
+        genre: "detective",
+        condition: "good",
+        price: 45,
+        paymentType: "cash",
+        seller: "Ahmed T.",
+        contact: "ahmed@email.com",
+        description: "Roman policier captivant pour jeunes lecteurs.",
+        sold: false
+    },
+    {
+        id: 108,
+        title: "Le Monde Magique d'Elara",
+        genre: "fantasy",
+        condition: "excellent",
+        price: 50,
+        paymentType: "bc",
+        seller: "Laila M.",
+        contact: "0688999000",
+        description: "Une aventure fantastique pleine de magie.",
+        sold: false
+    },
+    {
+        id: 109,
+        title: "Voyage dans l'Espace",
+        genre: "scifi",
+        condition: "good",
+        price: 40,
+        paymentType: "cash",
+        seller: "Mehdi R.",
+        contact: "mehdi@email.com",
+        description: "Science-fiction pour jeunes explorateurs.",
+        sold: false
+    },
+    {
+        id: 110,
+        title: "Le Secret de la Vieille Maison",
+        genre: "mystery",
+        condition: "fair",
+        price: 30,
+        paymentType: "bc",
+        seller: "Salma K.",
+        contact: "0699000111",
+        description: "Mystère palpitant à résoudre.",
+        sold: false
+    }
+];
+
+// ========== TOGGLE BOOK TYPE FIELDS ==========
+function toggleBookTypeFields() {
+    const bookType = document.getElementById('bookType').value;
+    const textbookFields = document.getElementById('textbookFields');
+    const storybookFields = document.getElementById('storybookFields');
+    
+    if (bookType === 'textbook') {
+        textbookFields.style.display = 'block';
+        storybookFields.style.display = 'none';
+        updateSubjectOptions(); // Update subjects when showing textbook fields
+    } else {
+        textbookFields.style.display = 'none';
+        storybookFields.style.display = 'block';
+    }
+}
+
+// ========== UPDATE SUBJECT OPTIONS BASED ON LEVEL ==========
+function updateSubjectOptions() {
+    const levelSelect = document.getElementById('bookLevel');
+    const subjectSelect = document.getElementById('bookSubject');
+    
+    if (!levelSelect || !subjectSelect) return;
+    
+    const level = levelSelect.value;
+    const currentSubject = subjectSelect.value;
+    
+    // Clear all options
+    subjectSelect.innerHTML = '';
+    
+    // Common subjects for both Collège and Lycée
+    const commonSubjects = [
+        { value: 'math', key: 'subject_math' },
+        { value: 'physics', key: 'subject_physics' },
+        { value: 'french', key: 'subject_french' },
+        { value: 'english', key: 'subject_english' },
+        { value: 'arabic', key: 'subject_arabic' },
+        { value: 'islamic', key: 'subject_islamic' },
+        { value: 'history', key: 'subject_history' }
+    ];
+    
+    // Add common subjects
+    commonSubjects.forEach(subject => {
+        const option = document.createElement('option');
+        option.value = subject.value;
+        option.textContent = translations[currentLang][subject.key];
+        option.setAttribute('data-translate', subject.key);
+        subjectSelect.appendChild(option);
+    });
+    
+    // Add Philosophy only for Lycée
+    if (level === 'lycee') {
+        const option = document.createElement('option');
+        option.value = 'philosophy';
+        option.textContent = translations[currentLang].subject_philosophy;
+        option.setAttribute('data-translate', 'subject_philosophy');
+        subjectSelect.appendChild(option);
+    }
+    
+    // Restore previous selection if still valid
+    if (currentSubject && (level === 'lycee' || currentSubject !== 'philosophy')) {
+        subjectSelect.value = currentSubject;
+    }
+}
+
+// Make functions globally accessible
+window.toggleBookTypeFields = toggleBookTypeFields;
+window.updateSubjectOptions = updateSubjectOptions;
 
 // ========== GÉNÉRATION DE CODE ALÉATOIRE ==========
 function generateTicketCode() {
@@ -524,7 +825,6 @@ function translatePage() {
 
     document.body.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
     updateBCDisplay();
-            incrementSales();
 }
 
 // ========== GESTION DU SOLDE BC ==========
@@ -585,27 +885,66 @@ function initEvents() {
         }
     });
 
+    // Event listeners for storybooks filters with debounce for performance
+    ['filterGenre', 'filterStorybookCondition', 'filterStorybookPrice'].forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            let timeout;
+            element.addEventListener('change', () => {
+                clearTimeout(timeout);
+                timeout = setTimeout(renderStorybooks, 100);
+            });
+            element.addEventListener('input', () => {
+                clearTimeout(timeout);
+                timeout = setTimeout(renderStorybooks, 100);
+            });
+        }
+    });
+
     const sellForm = document.getElementById('sellForm');
     if (sellForm) {
         sellForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            const newBook = {
-                id: books.length + 1,
-                title: document.getElementById('bookTitle').value,
-                subject: document.getElementById('bookSubject').value,
-                level: document.getElementById('bookLevel').value,
-                condition: document.getElementById('bookCondition').value,
-                price: parseInt(document.getElementById('bookPrice').value),
-                paymentType: document.getElementById('bookPaymentType').value,
-                seller: "Vous",
-                contact: document.getElementById('bookContact').value,
-                description: document.getElementById('bookDescription').value || "Aucune description fournie",
-                photo: window.currentBookPhoto || null,
-                sold: false
-            };
-
-            books.push(newBook);
+            const bookType = document.getElementById('bookType').value;
+            
+            if (bookType === 'textbook') {
+                // Créer un manuel scolaire
+                const newBook = {
+                    id: books.length + 1,
+                    title: document.getElementById('bookTitle').value,
+                    subject: document.getElementById('bookSubject').value,
+                    level: document.getElementById('bookLevel').value,
+                    condition: document.getElementById('bookCondition').value,
+                    price: parseInt(document.getElementById('bookPrice').value),
+                    paymentType: document.getElementById('bookPaymentType').value,
+                    seller: "Vous",
+                    contact: document.getElementById('bookContact').value,
+                    description: document.getElementById('bookDescription').value || "Aucune description fournie",
+                    photo: window.currentBookPhoto || null,
+                    sold: false
+                };
+                books.push(newBook);
+                renderBooks();
+            } else {
+                // Créer un livre de conte
+                const newStorybook = {
+                    id: storybooks.length + 101,
+                    title: document.getElementById('bookTitle').value,
+                    genre: document.getElementById('bookGenre').value,
+                    condition: document.getElementById('bookCondition').value,
+                    price: parseInt(document.getElementById('bookPrice').value),
+                    paymentType: document.getElementById('bookPaymentType').value,
+                    seller: "Vous",
+                    contact: document.getElementById('bookContact').value,
+                    description: document.getElementById('bookDescription').value || "Aucune description fournie",
+                    photo: window.currentBookPhoto || null,
+                    sold: false
+                };
+                storybooks.push(newStorybook);
+                renderStorybooks();
+            }
+            
             addBC(50);
             
             const msg = document.getElementById('successMessage');
@@ -616,8 +955,9 @@ function initEvents() {
             if (typeof window.removePhoto === 'function') {
                 window.removePhoto();
             }
-            renderBooks();
-            incrementSales();
+            // Reset to textbook by default
+            document.getElementById('bookType').value = 'textbook';
+            toggleBookTypeFields();
         });
     }
 }
@@ -653,7 +993,7 @@ function renderBooks() {
     grid.innerHTML = filteredBooks.map(book => {
         // Afficher la photo ou un placeholder
         const imageHtml = book.photo 
-            ? `<img src="${book.photo}" class="book-image" alt="${book.title}">` 
+            ? `<img src="${book.photo}" class="book-image" alt="${book.title}" loading="lazy">` 
             : `<div class="book-image-placeholder">📖</div>`;
         
         return `
@@ -734,6 +1074,150 @@ function showBookDetails(bookId) {
     showPage('details');
 }
 
+// ========== AFFICHAGE DES LIVRES DE CONTE ==========
+function renderStorybooks() {
+    const grid = document.getElementById('storybooksGrid');
+    if (!grid) return;
+    
+    const genre = document.getElementById('filterGenre')?.value || '';
+    const condition = document.getElementById('filterStorybookCondition')?.value || '';
+    const maxPrice = document.getElementById('filterStorybookPrice')?.value || '';
+
+    let filteredBooks = storybooks.filter(book => {
+        if (genre && book.genre !== genre) return false;
+        if (condition && book.condition !== condition) return false;
+        if (maxPrice && book.price > parseInt(maxPrice)) return false;
+        return true;
+    });
+
+    grid.innerHTML = filteredBooks.map(book => {
+        const imageHtml = book.photo 
+            ? `<img src="${book.photo}" class="book-image" alt="${book.title}" loading="lazy">` 
+            : `<div class="book-image-placeholder">📚</div>`;
+        
+        return `
+        <div class="book-card ${book.sold ? 'sold' : ''}" 
+             data-sold-text="${translations[currentLang].out_of_stock}"
+             onclick="${book.sold ? '' : `showStorybookDetails(${book.id})`}">
+            ${imageHtml}
+            <div class="book-content">
+                <div class="book-title">${book.title}</div>
+                <div class="book-info">${translations[currentLang]['genre_' + book.genre]}</div>
+                <span class="badge badge-${book.condition}">${translations[currentLang]['condition_' + book.condition]}</span>
+                <div class="book-price">
+                    ${book.price} ${book.paymentType === 'bc' ? translations[currentLang].bc_currency : translations[currentLang].dh}
+                    ${book.paymentType === 'bc' ? '💰' : '💵'}
+                </div>
+            </div>
+        </div>
+        `;
+    }).join('');
+}
+
+function showStorybookDetails(bookId) {
+    const book = storybooks.find(b => b.id === bookId);
+    if (!book) return;
+
+    const content = document.getElementById('bookDetailsContent');
+    
+    const imageHtml = book.photo 
+        ? `<img src="${book.photo}" class="book-detail-image" alt="${book.title}">` 
+        : `<div class="book-detail-image-placeholder">📚</div>`;
+    
+    const buyButton = book.sold 
+        ? `<div style="background: #e74c3c; color: white; padding: 1rem; border-radius: 10px; text-align: center; font-weight: 700; margin-top: 1rem;">
+            ${translations[currentLang].out_of_stock}
+           </div>`
+        : (book.paymentType === 'bc' 
+            ? `<button class="btn btn-primary" onclick="buyStorybookWithBC(${book.id})" style="margin-top: 1rem; width: 100%;">
+                ${translations[currentLang].btn_buy_bc} ${book.price} ${translations[currentLang].bc_currency} 💰
+               </button>`
+            : `<button class="btn btn-primary" onclick="buyStorybookWithCash(${book.id})" style="margin-top: 1rem; width: 100%;">
+                ${translations[currentLang].btn_buy_cash} ${book.price} ${translations[currentLang].dh} 💵
+               </button>`);
+    
+    const contactButton = `
+        <button class="btn-contact-seller" onclick="contactSeller(${book.id}, '${book.seller}')" data-translate="btn_contact_seller">
+            💬 ${translations[currentLang].btn_contact_seller}
+        </button>
+    `;
+    
+    content.innerHTML = `
+        <div style="max-width: 600px; margin: 0 auto;">
+            ${imageHtml}
+            <h2 style="margin-bottom: 1rem; font-size: 1.8rem; color: var(--dark);">${book.title}</h2>
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                <span class="badge badge-${book.condition}">${translations[currentLang]['condition_' + book.condition]}</span>
+            </div>
+            <div class="detail-info">
+                <span class="detail-label" data-translate="filter_genre">${translations[currentLang].filter_genre}:</span>
+                <span class="detail-value">${translations[currentLang]['genre_' + book.genre]}</span>
+            </div>
+            <div class="detail-info">
+                <span class="detail-label" data-translate="seller">${translations[currentLang].seller}:</span>
+                <span class="detail-value">${book.seller}</span>
+            </div>
+            <div class="detail-info">
+                <span class="detail-label" data-translate="contact">${translations[currentLang].contact}:</span>
+                <span class="detail-value">${book.contact}</span>
+            </div>
+            <div class="detail-info">
+                <span class="detail-label" data-translate="description">${translations[currentLang].description}:</span>
+                <p style="margin-top: 0.5rem; line-height: 1.6;">${book.description}</p>
+            </div>
+            <div style="margin-top: 1.5rem;">
+                ${buyButton}
+                ${contactButton}
+            </div>
+            <button class="btn btn-secondary" onclick="showPage('storybooks')" style="margin-top: 1rem; width: 100%;" data-translate="btn_back">
+                ${translations[currentLang].btn_back}
+            </button>
+        </div>
+    `;
+    showPage('details');
+}
+
+function buyStorybookWithBC(bookId) {
+    const book = storybooks.find(b => b.id === bookId);
+    if (!book || book.sold) return;
+    
+    if (bcBalance < book.price) {
+        alert(translations[currentLang].insufficient_bc);
+        return;
+    }
+    
+    subtractBC(book.price);
+    book.sold = true;
+    
+    const ticketCode = generateTicketCode();
+    showTicket(book, ticketCode, 'bc');
+    incrementPurchases();
+    
+    // Si le livre appartient à l'utilisateur actuel, incrémenter les ventes
+    if (book.seller === "Vous") {
+        incrementSales();
+    }
+    
+    renderStorybooks();
+}
+
+function buyStorybookWithCash(bookId) {
+    const book = storybooks.find(b => b.id === bookId);
+    if (!book || book.sold) return;
+    
+    book.sold = true;
+    const ticketCode = generateTicketCode();
+    showTicket(book, ticketCode, 'cash');
+    incrementPurchases();
+    
+    // Si le livre appartient à l'utilisateur actuel, incrémenter les ventes
+    if (book.seller === "Vous") {
+        incrementSales();
+    }
+    
+    renderStorybooks();
+}
+
 // ========== INITIALISATION ==========
 document.addEventListener('DOMContentLoaded', () => {
     initEvents();
@@ -804,6 +1288,11 @@ function buyWithBC(bookId) {
         showTicket(book, ticketCode, 'bc');
         incrementPurchases();
         
+        // Si le livre appartient à l'utilisateur actuel, incrémenter les ventes
+        if (book.seller === "Vous") {
+            incrementSales();
+        }
+        
         console.log('Achat avec BC:', {
             bookId: bookId,
             bookTitle: book.title,
@@ -829,6 +1318,11 @@ function buyWithCash(bookId) {
     const ticketCode = generateTicketCode();
     showTicket(book, ticketCode, 'cash');
     incrementPurchases();
+    
+    // Si le livre appartient à l'utilisateur actuel, incrémenter les ventes
+    if (book.seller === "Vous") {
+        incrementSales();
+    }
     
     console.log('Achat avec Cash:', {
         bookId: bookId,
@@ -1409,9 +1903,9 @@ function contactSeller(bookId, sellerName) {
 
 // ========== INITIALISATION COMPLÈTE ==========
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialisation originale
     initEvents();
     renderBooks();
+    renderStorybooks();
     translatePage();
     initReportForm();
     loadProfile();

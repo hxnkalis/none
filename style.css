@@ -387,17 +387,6 @@ nav {
     border-color: var(--primary);
 }
 
-.book-image {
-    width: 100%;
-    height: 200px;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 4rem;
-    color: white;
-}
-
 .book-content {
     padding: 1.5rem;
 }
@@ -1909,7 +1898,142 @@ nav {
     }
 }
 
+/* ========== MOBILE PERFORMANCE OPTIMIZATIONS ========== */
 @media (max-width: 768px) {
+    /* Reduce animations on mobile for better performance */
+    * {
+        animation-duration: 0.2s !important;
+        transition-duration: 0.2s !important;
+    }
+    
+    /* Optimize navigation for mobile */
+    nav {
+        padding: 0.6rem 2%;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .logo {
+        font-size: 1.3rem;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+    
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+        flex-wrap: wrap;
+    }
+    
+    .nav-links a {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    /* Optimize BC balance display */
+    .bc-balance-container {
+        padding: 0.4rem 0.6rem;
+        gap: 0.4rem;
+        font-size: 0.75rem;
+    }
+    
+    .bc-icon {
+        font-size: 1rem;
+    }
+    
+    .bc-amount {
+        font-size: 0.9rem;
+    }
+    
+    .bc-label,
+    .bc-currency {
+        font-size: 0.6rem;
+    }
+    
+    /* Optimize hero section */
+    .hero {
+        padding: 2rem 1rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    /* Optimize cards grid for mobile */
+    .books-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1rem;
+    }
+    
+    .book-card {
+        font-size: 0.9rem;
+    }
+    
+    .book-image-placeholder,
+    .book-image {
+        height: 140px;
+        font-size: 2.5rem;
+    }
+    
+    .book-content {
+        padding: 1rem;
+    }
+    
+    .book-title {
+        font-size: 1rem;
+        line-height: 1.3;
+    }
+    
+    /* Optimize filters */
+    .filters {
+        padding: 1rem;
+    }
+    
+    .filter-group {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    /* Better form controls on mobile */
+    .filter-item select,
+    .filter-item input,
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+        padding: 0.7rem;
+    }
+    
+    .form-group label {
+        font-size: 0.9rem;
+    }
+    
+    /* Optimize buttons */
+    .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Optimize profile button */
+    .profile-btn,
+    .theme-shop-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Reduce container padding */
+    .container {
+        padding: 1.5rem 1rem;
+    }
+    
+    /* Optimize photo preview */
     .photo-preview {
         height: 200px;
     }
@@ -1917,4 +2041,144 @@ nav {
     .message {
         max-width: 85%;
     }
+    
+    /* Optimize feature cards */
+    .feature-card {
+        padding: 1.5rem;
+    }
+    
+    .feature-icon {
+        font-size: 2.5rem;
+    }
+    
+    /* Optimize modals for mobile */
+    .modal-content,
+    .ticket-content {
+        width: 95%;
+        max-width: 95%;
+        padding: 1.5rem;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    /* Disable hover effects on mobile for better performance */
+    .book-card:hover,
+    .feature-card:hover,
+    .btn:hover {
+        transform: none;
+    }
+    
+    /* Optimize lang switcher */
+    .lang-switcher {
+        padding: 0.3rem;
+        gap: 0.3rem;
+    }
+    
+    .lang-btn {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.85rem;
+    }
 }
+
+/* Further optimizations for very small screens */
+@media (max-width: 480px) {
+    .books-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.4rem;
+    }
+    
+    .hero p {
+        font-size: 0.9rem;
+    }
+    
+    .nav-links {
+        font-size: 0.7rem;
+        gap: 0.3rem;
+    }
+    
+    .nav-links a {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.4rem;
+    }
+    
+    .bc-balance-container {
+        padding: 0.3rem 0.5rem;
+    }
+    
+    .bc-amount {
+        font-size: 0.85rem;
+    }
+    
+    .profile-btn,
+    .theme-shop-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .lang-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+    
+    .book-title {
+        font-size: 0.95rem;
+    }
+    
+    .book-info {
+        font-size: 0.75rem;
+    }
+    
+    .book-price {
+        font-size: 0.9rem;
+    }
+    
+    .btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+    }
+    
+    /* Stack BC info vertically on very small screens */
+    .bc-info {
+        font-size: 0.75rem;
+    }
+    
+    /* Better modal sizing */
+    .modal-content,
+    .ticket-content {
+        width: 98%;
+        padding: 1rem;
+        margin: 1rem auto;
+    }
+    
+    /* Smaller feature icons */
+    .feature-icon {
+        font-size: 2rem;
+    }
+    
+    .feature-card h3 {
+        font-size: 1.1rem;
+    }
+}
+
+/* Improve scrolling performance */
+.page,
+.books-grid,
+.chat-messages {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* GPU acceleration for smoother animations */
+.book-card,
+.feature-card,
+.btn,
+.modal-content {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
